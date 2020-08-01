@@ -1,0 +1,40 @@
+﻿@using Activty3.Models
+@model Tuple<List<CustomerModel>, CustomerModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Customer Details";
+}
+
+@Html.Label("Please select a Customer:");
+
+@using (Html.BeginForm("OnSelectCustomer", "Customer"))
+{
+    @Html.AntiForgeryToken();
+
+    var selected = false;
+
+    foreach (var customer in Model.Item1)
+    {
+        if (Model.Item2 == customer)
+        {
+            selected = true;
+        }
+        else
+        {
+            selected = false;
+        }
+        @Html.RadioButton("CustomerNumber", customer.ID, selected);
+        @Html.Label(customer.Name);
+        <br />
+    }
+    <input type="submit" id="submitButton" value="Display Details" />
+}
+
+<!-- Insert a partial view here.  Show customer details, using the second model of the tuple-->
+<div id="customerInfo">
+    @Html.Partial("~/Views/Shared/_CustomerDetails.cshtml", Model.Item2)
+</div>
+
+
+
