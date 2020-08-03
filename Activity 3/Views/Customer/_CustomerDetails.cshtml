@@ -1,0 +1,10 @@
+﻿
+@model Activity3.Models.CustomerModel
+<h1>Partial View Starts Here...</h1>
+@Html.Label("Customer Details")
+<br />
+@Html.DisplayNameFor(m => Model.Name): @Html.DisplayFor(m => Model.Name)
+<br />
+@Html.DisplayNameFor(m => Model.Age): @Html.DisplayFor(m => Model.Age)
+<br />
+<p>Updated at: @DateTime.Now</p>
